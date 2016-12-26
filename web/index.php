@@ -16,8 +16,10 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0651815f918a41ca3442e
 if ("message" == $event->type) {            //一般的なメッセージ(文字・イメージ・音声・位置情報・スタンプ含む)
     //テキストメッセージにはオウムで返す
     if ("text" == $event->message->type) {
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->message->text);
-    } else {
+       // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->message->text);
+	   $ImageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
+    }
+	else {
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("ごめん、わかんなーい(*´ω｀*)");
     }
 } elseif ("follow" == $event->type) {        //お友達追加時
