@@ -17,7 +17,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
     //テキストメッセージにはオウムで返す
     if ("text" == $event->message->type) {
        // $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->message->text);
-	   $ImageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
+	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
     }
 	else {
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("ごめん、わかんなーい(*´ω｀*)");
@@ -31,6 +31,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 } else {
     //なにもしない
 }
+//$response = $bot->replyMessage($event->replyToken, $textMessageBuilder);
 $response = $bot->replyMessage($event->replyToken, $textMessageBuilder);
 syslog(LOG_EMERG, print_r($event->replyToken, true));
 syslog(LOG_EMERG, print_r($response, true));
