@@ -8,13 +8,14 @@ $input = file_get_contents('php://input');
 $json = json_decode($input);
 $event = $json->events[0];
 
-syslog(LOG_EMERG, print_r($event , true));
-
 //設定LINE bot 相關參數
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('CFvNdr2w47+0oB2QECf7UPB+ttgJCWeXXT+A5sflL+LYmK7nPyncW0pRaAO7DABzNub2MuhamUrtjx39F1nE2sq3pVP0WejYolMKz+dYhb66voJXRuolqJT0wNza3rfT8eLsjxQrB28u0zpD4em2DQdB04t89/1O/w1cDnyilFU=');
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0651815f918a41ca3442ed5c8397dbb7']);
 
 $servertext = "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n ''";
+
+$response = $bot->replyMessage($event->replyToken, "用戶訊息:".$event);
+
 
 //進行判斷使用類別
 if ("message" == $event->type) {            //一般的なメッセージ(文字・イメージ・音声・位置情報・スタンプ含む)
