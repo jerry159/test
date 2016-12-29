@@ -14,7 +14,8 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0651815f918a41ca3442e
 
 $servertext = "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n";
 
-$response = $bot->replyMessage($event->replyToken, "用戶訊息:".$event);
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event);
+$response = $bot->replyMessage($event->replyToken, $textMessageBuilder);
 
 
 //進行判斷使用類別
