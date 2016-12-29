@@ -16,6 +16,8 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0651815f918a41ca3442e
 
 
 $servertext = "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n";
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("我看不懂你 @@");
+error_log("textMessageBuilder1表示:".print_r($textMessageBuilder, TRUE) );
 
 //進行判斷使用類別
 if ("message" == $event->type) {            //一般的なメッセージ(文字・イメージ・音声・位置情報・スタンプ含む)
@@ -32,7 +34,8 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	   }elseif("課程報名" == $event->message->text){
 			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("請輸入你的EMAIL");
 	  }else{
-		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext );
+	   $textMessageBuilder =  array(array("type": "text","text": "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n"),array("type": "sticker","packageId": "1",  "stickerId": "1"))
+	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext );
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
 	   }
 	}elseif("sticker" == $event->message->type){
@@ -49,9 +52,8 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 } else {
     //なにもしない
 }
-$textMessageBuilder_1 = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
-
-$response = $bot->replyMessage($event->replyToken , {$textMessageBuilder_1,$textMessageBuilder});
+error_log("array表示".print_r($textMessageBuilder, TRUE) );
+$response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
 syslog(LOG_EMERG, print_r($event->replyToken, true));
 syslog(LOG_EMERG, print_r($response, true));
 error_log("輸出".print_r($event, TRUE) );
