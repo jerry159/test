@@ -9,8 +9,7 @@ $json = json_decode($input);
 $event = $json->events[0];
 
 error_log("hello, this is a test!");
-error_log($json);
-//file_put_contents("php://stderr", $json );
+error_log( print_r($event, TRUE) );
 
 //設定LINE bot 相關參數
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('sI+voOXTEQss74igmy+TAiWwKzgssW4xHn20K/SfFTt42k5tkrvPi04N13n6B8MXNub2MuhamUrtjx39F1nE2sq3pVP0WejYolMKz+dYhb6X4CeKbxv7rAb05/72fCeRP38QBI/gJpYoV2TvboDPoQdB04t89/1O/w1cDnyilFU=');
@@ -55,7 +54,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 //$response = $bot->replyMessage($event->replyToken, $textMessageBuilder);
 
 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("12123");
-$response = $bot->replyMessage('<replyToken>', $textMessageBuilder);
+$response = $bot->replyMessage($event->replyToken , $textMessageBuilder);
 syslog(LOG_EMERG, print_r($event->replyToken, true));
 syslog(LOG_EMERG, print_r($response, true));
 return;
