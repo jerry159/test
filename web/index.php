@@ -53,8 +53,8 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 
 $response = $bot->replyMessage($event->replyToken , $textMessageBuilder);
 syslog(LOG_EMERG, print_r($event->replyToken, true));
-error_log( print_r($event, TRUE) );
 syslog(LOG_EMERG, print_r($response, true));
+error_log( print_r($response, TRUE) );
 return;
 
 ?>
