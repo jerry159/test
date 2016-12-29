@@ -37,9 +37,13 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	  }else{
 	   //$textMessageBuilder =  array(array("type"=> "text","text"=> "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n"),array("type"=> "sticker","packageId"=>"1",  "stickerId"=>"1"));
 	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext );
-	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
-	   $response = $bot->replyMessage($event->replyToken , new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1"));
+	   $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
+	   
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
+	   
+	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
+       $response = $bot->replyMessage($event->replyToken ,$stickerMessageBuilder );
+	   return;
 	   }
 	}elseif("sticker" == $event->message->type){
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
@@ -55,12 +59,11 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 } else {
     //なにもしない
 }
-error_log("array表示".print_r($textMessageBuilder, TRUE) );
+
 $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
-syslog(LOG_EMERG, print_r($event->replyToken, true));
-syslog(LOG_EMERG, print_r($response, true));
+//syslog(LOG_EMERG, print_r($event->replyToken, true));
+//syslog(LOG_EMERG, print_r($response, true));
 error_log("輸出".print_r($event, TRUE) );
 error_log( print_r($response, TRUE) );
 return;
-
 ?>
