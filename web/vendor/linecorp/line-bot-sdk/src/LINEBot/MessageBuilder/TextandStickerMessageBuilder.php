@@ -47,7 +47,7 @@ class TextandStickerMessageBuilder implements MessageBuilder
      */
     public function __construct($text,$packageId, $stickerId)
     {
-		//$this->texts =$text ;
+		$this->texts =$text ;
         $this->packageId = $packageId;
         $this->stickerId = $stickerId;
     }
@@ -73,7 +73,7 @@ class TextandStickerMessageBuilder implements MessageBuilder
 		*/
         return [[
                 'type' => MessageType::TEXT,
-                'text' => "121321313213213",
+                'text' => $texts,
             ],[
                 'type' => MessageType::STICKER,
                 'packageId' => $this->packageId,

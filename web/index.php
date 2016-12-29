@@ -40,15 +40,6 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
        if ($response->isSucceeded()) {
 			echo 'Succeeded!';
-			$response_1 = $bot->pushMessage("to" ,$stickerMessageBuilder );
-			
-			//if ($response_1->isSucceeded()) {
-			//error_log('Succeeded!');
-			//return;
-			//}
-			// Failed
-			//error_log("第46行".$response_1->getHTTPStatus . ' ' . $response_1->getRawBody());
-			//return;
 		}
 		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());
 		return;
