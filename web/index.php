@@ -34,8 +34,20 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	   $stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
 	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
-       $response = $bot->pushMessage('<to>' ,$stickerMessageBuilder );
-	   return;
+       if ($response->isSucceeded()) {
+			echo 'Succeeded!';
+			$response_1 = $bot->pushMessage($event->replyToken ,$stickerMessageBuilder );
+			
+			if ($response_1->isSucceeded()) {
+			error_log('Succeeded!');
+			return;
+			}
+			// Failed
+			error_log( $response_1->getHTTPStatus . ' ' . $response_1->getRawBody());
+			return;
+		}
+		error_log( $response->getHTTPStatus . ' ' . $response->getRawBody());
+		return;
 	   }
 	}elseif("sticker" == $event->message->type){
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
