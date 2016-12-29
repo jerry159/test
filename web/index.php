@@ -51,8 +51,8 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 }*/
 //$response = $bot->replyMessage($event->replyToken, $textMessageBuilder);
 
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->type);
-$response = $bot->replyMessage($event->replyToken, $textMessageBuilder);
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("12123");
+$response = $bot->replyMessage('<replyToken>', $textMessageBuilder);
 syslog(LOG_EMERG, print_r($event->replyToken, true));
 syslog(LOG_EMERG, print_r($response, true));
 return;
