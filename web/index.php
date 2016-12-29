@@ -34,7 +34,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	   }elseif("課程報名" == $event->message->text){
 			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("請輸入你的EMAIL");
 	  }else{
-	   $textMessageBuilder =  array(array("type": "text","text": "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n"),array("type": "sticker","packageId": "1",  "stickerId": "1"))
+	   $textMessageBuilder =  array(array("type": "text","text": "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n"),array("type": "sticker","packageId": "1",  "stickerId": "1"));
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext );
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
 	   }
