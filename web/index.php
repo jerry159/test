@@ -39,7 +39,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
        if ($response->isSucceeded()) {
 			echo 'Succeeded!';
-			$response_1 = $bot->pushMessage($event->replyToken ,$stickerMessageBuilder );
+			$response_1 = $bot->pushMessage("to" ,$stickerMessageBuilder );
 			
 			if ($response_1->isSucceeded()) {
 			error_log('Succeeded!');
@@ -49,7 +49,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			error_log("第46行".$response_1->getHTTPStatus . ' ' . $response_1->getRawBody());
 			return;
 		}
-		error_log( $response->getHTTPStatus . ' ' . $response->getRawBody());
+		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());
 		return;
 	   }
 	}elseif("sticker" == $event->message->type){
