@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 date_default_timezone_set('Asia/Taipei');
 //載入LINE BOT SDK
 require_once __DIR__ . '/vendor/autoload.php';
@@ -31,9 +31,6 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 		   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("相關活動請參考此連結 : https://devdocs.line.me/en/#messaging-api");
 	   }elseif("課程報名" == $event->message->text){
 			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("請輸入你的EMAIL");
-			//$response = $bot->replyMessage($event->replyToken, $textMessageBuilder);
-			//syslog(LOG_EMERG, print_r($event->replyToken, true));
-			//syslog(LOG_EMERG, print_r($response, true));
 	  }else{
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext );
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
@@ -56,8 +53,4 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 $response = $bot->replyMessage($event->replyToken, $textMessageBuilder);
 syslog(LOG_EMERG, print_r($event->replyToken, true));
 syslog(LOG_EMERG, print_r($response, true));
-return;
-
-
-
 ?>
