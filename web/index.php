@@ -49,11 +49,12 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 } else {
     //なにもしない
 }
+$textMessageBuilder_1 = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
 
-
-$response = $bot->replyMessage($event->replyToken , $textMessageBuilder);
+$response = $bot->replyMessage($event->replyToken , {$textMessageBuilder_1,$textMessageBuilder});
 syslog(LOG_EMERG, print_r($event->replyToken, true));
 syslog(LOG_EMERG, print_r($response, true));
+error_log("輸出".print_r($event, TRUE) );
 error_log( print_r($response, TRUE) );
 return;
 
