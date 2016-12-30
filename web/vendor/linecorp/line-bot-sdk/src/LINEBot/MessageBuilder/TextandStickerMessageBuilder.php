@@ -32,10 +32,10 @@ class TextandStickerMessageBuilder implements MessageBuilder
     private $packageId;
     /** @var string */
     private $stickerId;
-	 /** @var string[] */
+	 /** @var string */
     private $texts;
     /** @var array */
-    private $message = [];
+    private $message ;
 	
     /**
      * TextandStickerMessageBuilder constructor.
@@ -45,9 +45,8 @@ class TextandStickerMessageBuilder implements MessageBuilder
      * @param string $packageId
      * @param string $stickerId
      */
-    public function __construct($text,$packageId, $stickerId)
-    {
-		$this->texts =$text ;
+    public function __construct($packageId, $stickerId,$text){
+		$this->texts = $text ;
         $this->packageId = $packageId;
         $this->stickerId = $stickerId;
     }
@@ -59,22 +58,19 @@ class TextandStickerMessageBuilder implements MessageBuilder
      */
     public function buildMessage()
     {
-		/*
+		
 		 if (!empty($this->message)) {
             return $this->message;
         }
 
         foreach ($this->texts as $text) {
-            $this->message[] = [
+            $this->message = [
                 'type' => MessageType::TEXT,
                 'text' => $text,
             ];
         }
-		*/
-        return [[
-                'type' => MessageType::TEXT,
-                'text' => $texts,
-            ],[
+		
+        return [ $this->message ,[
                 'type' => MessageType::STICKER,
                 'packageId' => $this->packageId,
                 'stickerId' => $this->stickerId,

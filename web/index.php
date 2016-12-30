@@ -33,7 +33,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	  }else{
 	   //$textMessageBuilder =  array(array("type"=> "text","text"=> "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n"),array("type"=> "sticker","packageId"=>"1",  "stickerId"=>"1"));
 	   $servertext = "看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 \n";	   
-	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder($servertext,"1","1");
+	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","1",$servertext);
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext );
 	   //$stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
