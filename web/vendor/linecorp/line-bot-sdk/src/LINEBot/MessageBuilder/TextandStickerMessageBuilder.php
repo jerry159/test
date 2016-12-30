@@ -67,7 +67,7 @@ class TextandStickerMessageBuilder implements MessageBuilder
         ];
         }
 
-        $this->message = [ 'type' => MessageType::TEXT, 'text' => $this->$text ,  ];
+        $this->message = [ 'type' => MessageType::TEXT, 'text' => $this->text ,  ];
 		
         return [ $this->message ,[
                 'type' => MessageType::STICKER,
