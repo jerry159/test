@@ -21,7 +21,6 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	
     //テキストメッセージにはオウムで返す
     if ("text" == $event->message->type) {
-	   	$order = $event->message->text ;
 	   if("時間" == $event->message->text ){
 		   $newtime=time();
 		   $time = "現在時間:".date("Y-m-d H:i:s",$newtime);
@@ -30,18 +29,33 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 		   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("相關活動請參考此連結 : https://devdocs.line.me/en/#messaging-api");
 	   }elseif("報名" == $event->message->text){
 			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("請輸入你的EMAIL");
+	  }elseif("你的名字" == $event->message->text){
+			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("你好!! 我是名字鋼彈機器人");
+	  }elseif("我的名字" == $event->message->text){
+			$youname ; 
+			if("user" == $event->source->type)
+				$response = $bot->getProfile($event->source->userId);
+				if ($response->isSucceeded()) {
+				$profile = $response->getJSONDecodedBody();
+				$youname =  $profile['displayName'];
+				//echo $profile['pictureUrl'];
+				//echo $profile['statusMessage'];
+			}
+			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("你好!! 你的名子是".$youname);
+			$response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
+		   if ($response->isSucceeded()) {
+				echo 'Succeeded!';
+			}else{		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());}
+			return;
+	  }elseif("報名" == $event->message->text){
+			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("請輸入你的EMAIL");
 	  }else{
-	   //$textMessageBuilder =  array(array("type"=> "text","text"=> "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n"),array("type"=> "sticker","packageId"=>"1",  "stickerId"=>"1"));
-	   $servertext = "看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n 請輸入【報名】 顯示目前動資訊\n";	   
+	   $servertext = "我看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n 請輸入【報名】 顯示目前動資訊\n";	   
 	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","1",$servertext);
-	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext );
-	   //$stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
-	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder("https://jpeg.org/images/jpeg-home.jpg","https://jpeg.org/images/jpeg-home.jpg");//圖片
 	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
        if ($response->isSucceeded()) {
 			echo 'Succeeded!';
-		}
-		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());
+		}else{		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());}
 		return;
 	   }
 	}elseif("sticker" == $event->message->type){
