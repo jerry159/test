@@ -67,7 +67,7 @@ class TextandStickerMessageBuilder implements MessageBuilder
         ];
         }
 
-        $this->message = [ 'type' => MessageType::TEXT, 'text' => $this->text ,  ];
+        $this->message = [ 'type' => MessageType::TEXT, 'text' => "我看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n 請輸入【報名】 顯示目前動資訊\n" ,  ];
 		
         return [ $this->message ,[
                 'type' => MessageType::STICKER,
