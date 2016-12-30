@@ -26,13 +26,13 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 		   $newtime=time();
 		   $time = "現在時間:".date("Y-m-d H:i:s",$newtime);
 		   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($time);
-	   }elseif("目前活動" == $event->message->text){
+	   }elseif("活動" == $event->message->text){
 		   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("相關活動請參考此連結 : https://devdocs.line.me/en/#messaging-api");
-	   }elseif("課程報名" == $event->message->text){
+	   }elseif("報名" == $event->message->text){
 			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("請輸入你的EMAIL");
 	  }else{
 	   //$textMessageBuilder =  array(array("type"=> "text","text"=> "看不懂你說的，目前提供服務輸入\n '時間'-->可以現在時間\n '目前活動'\n"),array("type"=> "sticker","packageId"=>"1",  "stickerId"=>"1"));
-	   $servertext = "看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 \n";	   
+	   $servertext = "看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n 請輸入【報名】 顯示目前動資訊\n";	   
 	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","1",$servertext);
 	   //$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext );
 	   //$stickerMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");

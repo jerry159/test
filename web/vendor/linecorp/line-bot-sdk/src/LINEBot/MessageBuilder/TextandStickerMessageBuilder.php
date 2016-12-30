@@ -33,7 +33,7 @@ class TextandStickerMessageBuilder implements MessageBuilder
     /** @var string */
     private $stickerId;
 	 /** @var string */
-    private $texts;
+    private $text;
     /** @var array */
     private $message ;
 	
@@ -46,7 +46,7 @@ class TextandStickerMessageBuilder implements MessageBuilder
      * @param string $stickerId
      */
     public function __construct($packageId, $stickerId , $text){
-		$this->texts = $text ;
+		$this->text = $text ;
         $this->packageId = $packageId;
         $this->stickerId = $stickerId;
     }
@@ -67,7 +67,7 @@ class TextandStickerMessageBuilder implements MessageBuilder
         ];
         }
 
-        $this->message = [ 'type' => MessageType::TEXT, 'text' => "看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 \n",   ];
+        $this->message = [ 'type' => MessageType::TEXT, 'text' => text ,  ];
 		
         return [ $this->message ,[
                 'type' => MessageType::STICKER,
