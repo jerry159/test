@@ -33,9 +33,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
     //テキストメッセージにはオウムで返す
     if ("text" == $event->message->type) {
 		
-	   if(isset($_SESSION["apply"])) {
-		   
-	   }esle{
+	 
 	   if("時間" == $event->message->text ){
 		   $newtime=time();
 		   $time = "現在時間:".date("Y-m-d H:i:s",$newtime);
@@ -92,26 +90,20 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			echo 'Succeeded!';
 		}else{		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());}
 		return;
-	   }}
+	   }
 
-   }elseif("sticker" == $event->message->type){
+    }elseif("sticker" == $event->message->type){
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
-   }else {
-        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("我看不懂你 @@");
-   }
-
-   } elseif ("follow" == $event->type) {        //お友達追加時
-    $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("よろしくー");
-
+    } elseif ("follow" == $event->type) {        //お友達追加時
+		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("よろしくー");
 	} elseif ("join" == $event->type) {           //グループに入ったときのイベント
     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('こんにちは よろしくー');
 
 	} elseif ('beacon' == $event->type) {         //Beaconイベント
     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Godanがいんしたお(・∀・) ');
-
+	
 	} else {
     //なにもしない
-
 	}
 
 	$response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
