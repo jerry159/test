@@ -30,7 +30,6 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
     //テキストメッセージにはオウムで返す
     if ("text" == $event->message->type) {
 		
-	 
 	   if("時間" == $event->message->text ){
 		   $newtime=time();
 		   $time = "現在時間:".date("Y-m-d H:i:s",$newtime);
@@ -53,6 +52,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			}else{		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());}
 			return;
 	  }elseif("挑戰問題" == $event->message->text){
+		  /*
 			$actions = array(
 			  //一般訊息型 action
 			  new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("按鈕1","文字1"),
@@ -67,7 +67,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("按鈕文字","說明", $img_url, $actions);
 			$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
 			$bot->replyMessage($event->replyToken,$msg);
-			return;
+			return;*/
 	  }elseif("報名" == $event->message->text){
 			//session
 			$_SESSION["apply"]= $event->source->userId."_1";
