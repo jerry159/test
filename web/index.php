@@ -16,14 +16,13 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0651815f918a41ca3442e
 
 
 	$youname ; 
-			if("user" == $event->source->type)
-				$response = $bot->getProfile($event->source->userId);
-				if ($response->isSucceeded()) {
-				$profile = $response->getJSONDecodedBody();
-				$youname =  $profile['displayName'];
-				//echo $profile['pictureUrl'];
-				//echo $profile['statusMessage'];
-			}
+	$response = $bot->getProfile($event->source->userId);
+	if ($response->isSucceeded()) {
+	$profile = $response->getJSONDecodedBody();
+	$youname =  $profile['displayName'];
+	//echo $profile['pictureUrl'];
+	//echo $profile['statusMessage'];
+	}
 			
 
 
