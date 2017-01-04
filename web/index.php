@@ -148,7 +148,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			return;
 	}if("page=5" == $event->postback->data ){
 		    
-			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("全部答對!!!);
+			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("全部答對!!!");
 			$response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
 			return;
 	}
