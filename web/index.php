@@ -80,6 +80,13 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('こんにちは よろしくー');
 } elseif ('beacon' == $event->type) {         //Beaconイベント
     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Godanがいんしたお(・∀・) ');
+}elseif ('postback' == $event->type) {         //Beaconイベント
+    error_log( print_r($event->postback->data, TRUE) );
+	if("page=1" == $event->postback->data ){
+		   $newtime=time();
+		   $time = "現在時間:".date("Y-m-d H:i:s",$newtime);
+		   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($time);
+	   }
 } else {
     //なにもしない
 }
