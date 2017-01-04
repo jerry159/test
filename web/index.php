@@ -51,7 +51,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			  //網址型 action
 			  new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
 			  //下列兩筆均為互動型action
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("下一頁", "page=3"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("下一頁", "error"),
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("上一頁", "page=1")
 			);
 			 
@@ -59,7 +59,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("按鈕文字","說明", $img_url, $actions);
 			$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
 			$response = $bot->replyMessage($event->replyToken ,$msg );
-			
+			return;
 	  }else{
 	   $servertext = "我看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n 請輸入【報名】 顯示目前動資訊\n";	   
 	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","2",$servertext);
@@ -83,16 +83,79 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 }elseif ('postback' == $event->type) {         //Beaconイベント
     error_log( print_r($event->postback->data, TRUE) );
 	if("page=1" == $event->postback->data ){
-		   $newtime=time();
-		   $time = "現在時間:".date("Y-m-d H:i:s",$newtime);
-		   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($time);
-	   }
+		$actions = array(
+			  //一般訊息型 action
+			  new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("按鈕1","文字1"),
+			  //網址型 action
+			  new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
+			  //下列兩筆均為互動型action
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("下一頁", "error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("上一頁", "page=2")
+			);
+			 
+			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
+			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題二","說明", $img_url, $actions);
+			$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
+			$response = $bot->replyMessage($event->replyToken ,$msg );
+			return;
+	}if("page=2" == $event->postback->data ){
+		$actions = array(
+			  //一般訊息型 action
+			  new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("按鈕1","文字1"),
+			  //網址型 action
+			  new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
+			  //下列兩筆均為互動型action
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("下一頁", "error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("上一頁", "page=3")
+			);
+			 
+			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
+			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題二","說明", $img_url, $actions);
+			$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
+			$response = $bot->replyMessage($event->replyToken ,$msg );
+			return;
+	}if("page=3" == $event->postback->data ){
+		$actions = array(
+			  //一般訊息型 action
+			  new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("按鈕1","文字1"),
+			  //網址型 action
+			  new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
+			  //下列兩筆均為互動型action
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("下一頁", "error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("上一頁", "page=4")
+			);
+			 
+			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
+			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題二","說明", $img_url, $actions);
+			$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
+			$response = $bot->replyMessage($event->replyToken ,$msg );
+			return;
+	}if("page=4" == $event->postback->data ){
+		$actions = array(
+			  //一般訊息型 action
+			  new \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("按鈕1","文字1"),
+			  //網址型 action
+			  new \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google","http://www.google.com"),
+			  //下列兩筆均為互動型action
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("下一頁", "error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("上一頁", "page=5")
+			);
+			 
+			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
+			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題二","說明", $img_url, $actions);
+			$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
+			$response = $bot->replyMessage($event->replyToken ,$msg );
+			return;
+	}if("page=5" == $event->postback->data ){
+		    
+			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("全部答對!!!);
+			$response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
+			return;
+	}
 } else {
     //なにもしない
 }
 $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
-//syslog(LOG_EMERG, print_r($event->replyToken, true));
-//syslog(LOG_EMERG, print_r($response, true));
 error_log("輸出".print_r($event, TRUE) );
 error_log( print_r($response, TRUE) );
 return;
