@@ -8,13 +8,11 @@ $input = file_get_contents('php://input');
 $json = json_decode($input);
 $event = $json->events[0];
 
-error_log( print_r($event, TRUE) );
-
 //設定LINE bot 相關參數
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('sI+voOXTEQss74igmy+TAiWwKzgssW4xHn20K/SfFTt42k5tkrvPi04N13n6B8MXNub2MuhamUrtjx39F1nE2sq3pVP0WejYolMKz+dYhb6X4CeKbxv7rAb05/72fCeRP38QBI/gJpYoV2TvboDPoQdB04t89/1O/w1cDnyilFU=');
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0651815f918a41ca3442ed5c8397dbb7']);
 
-
+/*
 	$youname ; 
 	$response = $bot->getProfile($event->source->userId);
 	if ($response->isSucceeded()) {
@@ -23,7 +21,7 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0651815f918a41ca3442e
 	//echo $profile['pictureUrl'];
 	//echo $profile['statusMessage'];
 	}
-			
+		*/	
 
 
 //進行判斷使用類別
