@@ -46,14 +46,14 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	  }elseif("挑戰問題" == $event->message->text){
 			
 			$actions = array(
-			   new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("約翰·C·史坦尼斯", "page=1,error"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("巴拉克·歐巴馬", "page=1,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("約翰·C·史坦尼斯", "page=0,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("巴拉克·歐巴馬", "page=0,error"),
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("亞伯拉罕·林肯", "page=1,OK"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("尼米茲", "page=1,error")
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("尼米茲", "page=0,error")
 			);
 			 
 			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
-			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("按鈕文字","哪一位是美國解放黑奴的總統", $img_url, $actions);
+			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題一","哪一位是美國解放黑奴的總統", $img_url, $actions);
 			$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
 			$response = $bot->replyMessage($event->replyToken ,$msg );
 			return;
@@ -80,32 +80,50 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 }elseif ('postback' == $event->type) {         //Beaconイベント
     $postback = explode(",",  $event->postback->data);
 	
-	if("page=1" == $postback[0] ){
+	if("page=0" == $postback[0] ){
+			
+		$actions = array(
+			 new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("約翰·C·史坦尼斯","page=0,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("巴拉克·歐巴馬", "page=0,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("亞伯拉罕·林肯", "page=1,OK"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("尼米茲", "page=0,error")
+			);		
+		
+		$img_url = "https://lh6.googleusercontent.com/-f8qMmE_HzBQ/VEUtHp-hOjI/AAAAAAAABOk/ohddJ2bcVWE/s300-no/MaBaSaLu_Google_QR.png";
+		$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題一","哪一位是美國解放黑奴的總統\n 你選錯了，再來一次!!", $img_url, $actions);
+		$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
+		$response = $bot->replyMessage($event->replyToken ,$msg );
+		return;	
+			
+	}elseif("page=1" == $postback[0]){
 		
 		$actions = array(
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2006", "page=2,error"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2004", "page=2,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2006", "page=1,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2004", "page=1,error"),
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2002", "page=2,OK"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2001", "page=2,error")
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2001", "page=1,error")
 			);		
 		$img_url ;
+		$question ;
 		if("OK" == $postback[1] ){
 			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
+			$question = "中鋼股票代號是多少";
 		}elseif("error" == $postback[1]){
 			$img_url = "https://lh6.googleusercontent.com/-f8qMmE_HzBQ/VEUtHp-hOjI/AAAAAAAABOk/ohddJ2bcVWE/s300-no/MaBaSaLu_Google_QR.png";
+			$question = "中鋼股票代號是多少\n 你選錯了，再來一次!!";
 		}
 
-		$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題二","中鋼股票代號是多少", $img_url, $actions);
+		$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題二",$question, $img_url, $actions);
 		$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
 		$response = $bot->replyMessage($event->replyToken ,$msg );
 		return;
-	
-	}if("page=2" == $postback[0]){
+		
+	}elseif("page=2" == $postback[0]){
 		$actions = array(
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("MOICA", "page=3,OK"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("GCA", "page=3,error"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("MOEACA", "page=3,error"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("XCA", "page=3,error")
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("GCA", "page=2,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("MOEACA", "page=2,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("XCA", "page=2,error")
 			);
 		$img_url ;	 
 		if("OK" == $postback[1] ){
@@ -119,12 +137,12 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 		$response = $bot->replyMessage($event->replyToken ,$msg );
 		return;
 	
-	}if("page=3" == $postback[0] ){
+	}elseif("page=3" == $postback[0] ){
 		$actions = array(
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("雪山", "page=4,error"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("阿里山", "page=4,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("雪山", "page=3,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("阿里山", "page=3,error"),
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("大屯山", "page=4,OK"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("大霸尖山", "page=4,error")
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("大霸尖山", "page=3,error")
 			);
 		
 		$img_url ;
@@ -139,12 +157,12 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 		$response = $bot->replyMessage($event->replyToken ,$msg );
 		return;
 	
-	}if("page=4" == $postback[0] ){
+	}elseif("page=4" == $postback[0] ){
 		    $actions = array(
 			  //下列均為互動型action
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("答案是5", "page=5,error"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("答案是6", "page=5,error"),
-			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("答案是7", "page=5,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("答案是5", "page=4,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("答案是6", "page=4,error"),
+			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("答案是7", "page=4,error"),
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("答案是8", "page=5,OK")
 			);
 		$img_url ;
@@ -159,7 +177,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 		$response = $bot->replyMessage($event->replyToken ,$msg );
 		return;
 			
-	}if("page=5" == $postback[0] ){
+	}elseif("page=5" == $postback[0] ){
 		    
 			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("全部答對!!!");
 			$response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
