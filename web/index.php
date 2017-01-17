@@ -81,8 +81,8 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 } elseif ('beacon' == $event->type) {         //Beaconイベント
     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Godanがいんしたお(・∀・) ');
 }elseif ('postback' == $event->type) {         //Beaconイベント
-	error_log( print_r($_SESSION["challengequesion"], TRUE) );
-   $postback = explode(",",  $event->postback->data);
+	error_log("123--->".$_SESSION["challengequesion"] );
+    $postback = explode(",",  $event->postback->data);
 	$challengequesion_1 = explode(",",  $_SESSION["challengequesion"]);
 	if("page=0" == $postback[0] ){
 		if($challengequesion_1[1]==$postback[0]){
