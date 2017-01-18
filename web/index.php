@@ -1,6 +1,6 @@
 <?php
 session_start();
-date_default_timezone_set('Asia/Taipei');
+
 //載入LINE BOT SDK
 require_once __DIR__ . '/vendor/autoload.php';
 //接收資料 
