@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+date_default_timezone_set('Asia/Taipei');
+
+ini_set('session.save_handler', 'memcached');
+ini_set('session.save_path', 'PERSISTENT=myapp_session ' . getenv('mc1.dev.ec2.memcachier.com:11211'));
+ini_set('memcached.sess_binary', 1);
+ini_set('memcached.sess_sasl_username', getenv('FAE5EC'));
+ini_set('memcached.sess_sasl_password', getenv('CCF5049DAAF046F453792453F2931B9C'));
+
+
 //載入LINE BOT SDK
 require_once __DIR__ . '/vendor/autoload.php';
 //接收資料 
