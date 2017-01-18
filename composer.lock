@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6861910f04a74b46592bdb8016ccef9f",
-    "content-hash": "1f0428750a2d0d77bd4670f75b3aeca0",
+    "hash": "548c12094aea8acf3ed6acf5345b95c6",
+    "content-hash": "ac29040d1e2edda12c4859042b73652a",
     "packages": [
         {
             "name": "linecorp/line-bot-sdk",
@@ -58,6 +58,55 @@
                 "sdk"
             ],
             "time": "2016-11-26 08:55:58"
+        },
+        {
+            "name": "memcachier/php-memcache-sasl",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/memcachier/PHPMemcacheSASL.git",
+                "reference": "9b71d0d16fa8dd3f2f5fab98726963b46123ac9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/memcachier/PHPMemcacheSASL/zipball/9b71d0d16fa8dd3f2f5fab98726963b46123ac9d",
+                "reference": "9b71d0d16fa8dd3f2f5fab98726963b46123ac9d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MemCachier\\": "src/MemCachier"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MemCachier Inc",
+                    "email": "code@memcachier.com",
+                    "homepage": "https://www.memcachier.com/"
+                },
+                {
+                    "name": "Ronny Wang",
+                    "email": "ronnywang@gmail.com",
+                    "homepage": "http://ronnywang.pixnet.net/blog"
+                }
+            ],
+            "description": "A PHP Memcache client with binary protocol and SASL support",
+            "homepage": "https://github.com/memcachier/PHPMemcacheSASL",
+            "keywords": [
+                "binary",
+                "cache",
+                "memcache",
+                "sasl"
+            ],
+            "time": "2015-06-04 19:44:27"
         }
     ],
     "packages-dev": [],
@@ -66,6 +115,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-memcached": "3.0.8"
+    },
     "platform-dev": []
 }
