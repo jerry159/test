@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "548c12094aea8acf3ed6acf5345b95c6",
-    "content-hash": "ac29040d1e2edda12c4859042b73652a",
+    "hash": "a97787769859ad80c4cbf3a3f7c6ba3f",
+    "content-hash": "a24c14826d9fad1173fcaf7b4e371015",
     "packages": [
         {
             "name": "linecorp/line-bot-sdk",
@@ -116,7 +116,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-memcached": "3.0.8"
+        "ext-memcached": "*"
     },
     "platform-dev": []
 }
