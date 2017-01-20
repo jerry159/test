@@ -8,6 +8,7 @@ $youname ;
 //載入LINE BOT SDK
 require_once __DIR__ . '/vendor/autoload.php';
 //接收資料 
+session_id('example_session_id');
 $input = file_get_contents('php://input');
 $json = json_decode($input);
 $event = $json->events[0];
