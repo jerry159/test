@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['count'])) {
+  error_log("SESSION不見了" );
+}
 $youname ; 
 //載入LINE BOT SDK
 require_once __DIR__ . '/vendor/autoload.php';
@@ -262,7 +265,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
     //なにもしない
 }
 $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
-error_log("輸出".print_r($event, TRUE) );
-error_log( print_r($response, TRUE) );
+//error_log("輸出".print_r($event, TRUE) );
+//error_log( print_r($response, TRUE) );
 return;
 ?>
