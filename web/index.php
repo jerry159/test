@@ -55,7 +55,8 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("尼米茲", "page=0,error")
 			);
 				
-			$_SESSION['challengequesion'] = $youname . ",page0";	
+			//$_SESSION['challengequesion'] = $youname . ",page0";	
+			$_SESSION['count'] = 0;
 			
 			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
 			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題一","哪一位是美國解放黑奴的總統?", $img_url, $actions);
@@ -83,7 +84,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 } elseif ('beacon' == $event->type) {         //Beaconイベント
     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Godanがいんしたお(・∀・) ');
 }elseif ('postback' == $event->type) {         //Beaconイベント
-	error_log("123--->" . $_SESSION['challengequesion'] );
+	error_log("123--->" . $_SESSION['count'] );
     $postback = explode(",",  $event->postback->data);
 	$challengequesion_1 = explode(",",  $_SESSION["challengequesion"]);
 	if("page=0" == $postback[0] ){
