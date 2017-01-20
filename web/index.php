@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+$youname ; 
 //載入LINE BOT SDK
 require_once __DIR__ . '/vendor/autoload.php';
 //接收資料 
@@ -27,7 +29,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	  }elseif("你的名字" == $event->message->text){
 			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("你好!! 我是名字鋼彈機器人");
 	  }elseif("我的名字" == $event->message->text){
-			$youname ; 
+			
 			if("user" == $event->source->type)
 				$response = $bot->getProfile($event->source->userId);
 				if ($response->isSucceeded()) {
@@ -53,7 +55,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("尼米茲", "page=0,error")
 			);
 				
-			$_SESSION['challengequesion']= $youname .",page0";	
+			$_SESSION['challengequesion'] = $youname .",page0";	
 			
 			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
 			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題一","哪一位是美國解放黑奴的總統?", $img_url, $actions);
