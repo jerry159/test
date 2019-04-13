@@ -33,7 +33,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
     if ("text" == $event->message->type) {
 	   if("時間" == $event->message->text ){
 		   $newtime=time();
-		   $time = "現在時間:".date("Y-m-d H:i:s",$newtime);
+		   $time = "台灣目前現在時間:".date("Y-m-d H:i:s",$newtime);
 		   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($time);
 	   }elseif("活動" == $event->message->text){
 		   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("相關活動請參考此連結 : https://devdocs.line.me/en/#messaging-api");
