@@ -58,7 +58,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("尼米茲", "page=0,error")
 			);
 				
-			//$_SESSION['challengequesion'] = $youname . ",page0";	
+			$_SESSION['challengequesion'] = $youname . ",page0";	
 			$img_url = "https://qiita-image-store.s3.amazonaws.com/0/53041/6fdf1c24-0d22-0ef3-1d09-a8ede16dba62.png";
 			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("問題一","哪一位是美國解放黑奴的總統?", $img_url, $actions);
 			$msg = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("這訊息要用手機的賴才看的到哦", $button);
@@ -67,7 +67,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			error_log("123--->" . $_SESSION['count'] );
 			return;
 	  }else{
-	   $servertext = "我看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n請輸入【報名】 顯示目前動資訊\n";	   
+	   $servertext = "我看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n請輸入【報名】 顯示目前動資訊\n請輸入【我的名子】 顯示讀取用戶資訊\n請輸入【你的名子】 顯示Bot資訊\n";	   
 	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","2",$servertext);
 	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
        if ($response->isSucceeded()) {
@@ -90,6 +90,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	error_log("123--->" . $_SESSION['count'] );
     $postback = explode(",",  $event->postback->data);
 	$challengequesion_1 = explode(",",  $_SESSION["challengequesion"]);
+	error_log("123--->" . $_SESSION['challengequesion'] );
 	if("page=0" == $postback[0] ){
 		if($challengequesion_1[1]==$postback[0]){
 			$img_url ;
@@ -100,7 +101,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 				$actions = array(
 				  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2006", "page=1,error"),
 				  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2004", "page=1,error"),
-				  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2002", "page=1,OK"),
+				  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2002", "page=2,OK"),
 				  new \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("2001", "page=1,error")
 				);		
 				$question = "中鋼股票代號是多少?";
