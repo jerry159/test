@@ -5,7 +5,6 @@ if (!isset($_SESSION['count'])) {
   error_log("SESSION不見了" );
 }
 
-$youname ; 
 //載入LINE BOT SDK
 require_once __DIR__ . '/vendor/autoload.php';
 //接收資料 
@@ -17,6 +16,16 @@ error_log( print_r($event, TRUE) );
 //設定LINE bot 相關參數
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('sI+voOXTEQss74igmy+TAiWwKzgssW4xHn20K/SfFTt42k5tkrvPi04N13n6B8MXNub2MuhamUrtjx39F1nE2sq3pVP0WejYolMKz+dYhb6X4CeKbxv7rAb05/72fCeRP38QBI/gJpYoV2TvboDPoQdB04t89/1O/w1cDnyilFU=');
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0651815f918a41ca3442ed5c8397dbb7']);
+$youname ;
+if("user" == $event->source->type)
+				$response = $bot->getProfile($event->source->userId);
+				if ($response->isSucceeded()) {
+				$profile = $response->getJSONDecodedBody();
+				$youname =  $profile['displayName'];
+}
+
+
+
 //進行判斷使用類別
 if ("message" == $event->type) {            //一般的なメッセージ(文字・イメージ・音声・位置情報・スタンプ含む)
 	
@@ -68,7 +77,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			error_log("123--->" . $_SESSION['count'] );
 			return;
 	  }else{
-	   $servertext = "我看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n請輸入【報名】 顯示目前動資訊\n請輸入【我的名子】 顯示讀取用戶資訊\n請輸入【你的名子】 顯示Bot資訊\n";	   
+	   $servertext = "我看不懂你說的，目前提供服務列表如下\n 請輸入【時間】可以查詢目前時間 \n 請輸入【活動】 顯示目前動資訊\n請輸入【報名】 顯示目前動資訊 \n請輸入【我的名子】 顯示讀取用戶資訊 \n請輸入【你的名子】 顯示Bot資訊\n";	   
 	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","2",$servertext);
 	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
        if ($response->isSucceeded()) {
@@ -88,10 +97,11 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 } elseif ('beacon' == $event->type) {         //Beaconイベント
     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Godanがいんしたお(・∀・) ');
 }elseif ('postback' == $event->type) {         //Beaconイベント
-	error_log("123--->" . $_SESSION['count'] );
+	error_log("count--->" . $_SESSION['count'] );
     $postback = explode(",",  $event->postback->data);
 	$challengequesion_1 = explode(",",  $_SESSION["challengequesion"]);
-	error_log("123--->" . $_SESSION['challengequesion'] );
+	error_log("postback--->data" . $event->postback->data );
+	error_log("challengequesion--->" . $_SESSION['challengequesion'] );
 	if("page=0" == $postback[0] ){
 		if($challengequesion_1[1]==$postback[0]){
 			$img_url ;
