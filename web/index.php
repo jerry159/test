@@ -4,6 +4,7 @@ session_start();
 if (!isset($_SESSION['count'])) {
   error_log("SESSION不見了" );
 }
+
 $youname ; 
 //載入LINE BOT SDK
 require_once __DIR__ . '/vendor/autoload.php';
