@@ -76,7 +76,8 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			$_SESSION['count'] = 0;
 			error_log("123--->" . $_SESSION['count'] );
 			return;
-	  }else{
+	  }
+	  /*else{
 	   $servertext = "我看不懂你說的，目前提供服務列表如下, 輸入【時間】可以查詢目前時間 \n 輸入【活動】 顯示目前動資訊 \n 輸入【報名】 顯示目前動資訊 \n 輸入【我的名子】 顯示讀取用戶資訊 \n 輸入【你的名子】 顯示Bot資訊";
 	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","2",$servertext);
 	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
@@ -85,7 +86,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			echo 'Succeeded!';
 		}else{		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());}
 		return;
-	   }
+	   }*/
 	}elseif("sticker" == $event->message->type){
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
 	}else {
