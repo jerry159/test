@@ -81,7 +81,7 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","2",$servertext);
 	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
        if ($response->isSucceeded()) {
-			error_log("servertext".  $servertext)
+			error_log("servertext".  $servertext);
 			echo 'Succeeded!';
 		}else{		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());}
 		return;
