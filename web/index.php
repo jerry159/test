@@ -23,9 +23,6 @@ if("user" == $event->source->type)
 				$profile = $response->getJSONDecodedBody();
 				$youname =  $profile['displayName'];
 }
-
-
-
 //進行判斷使用類別
 if ("message" == $event->type) {            //一般的なメッセージ(文字・イメージ・音声・位置情報・スタンプ含む)
 	
@@ -76,17 +73,16 @@ if ("message" == $event->type) {            //一般的なメッセージ(文字
 			$_SESSION['count'] = 0;
 			error_log("123--->" . $_SESSION['count'] );
 			return;
-	  }
-	  /*else{
-	   $servertext = "我看不懂你說的，目前提供服務列表如下, 輸入【時間】可以查詢目前時間 \n 輸入【活動】 顯示目前動資訊 \n 輸入【報名】 顯示目前動資訊 \n 輸入【我的名子】 顯示讀取用戶資訊 \n 輸入【你的名子】 顯示Bot資訊";
-	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextandStickerMessageBuilder("1","2",$servertext);
-	   $response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
-       if ($response->isSucceeded()) {
-			error_log("servertext".  $servertext);
-			echo 'Succeeded!';
-		}else{		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());}
-		return;
-	   }*/
+	  }else{
+	   $servertext = "我看不懂你說的，目前提供服務列表如下, 輸入【時間】可以查詢目前時間 \n 輸入【活動】 顯示目前動資訊 \n 輸入【報名】 顯示目前動資訊 \n 輸入【我的名子】 顯示讀取用戶資訊 \n 輸入【你的名子】 顯示Bot資訊   0x100012";
+	   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($servertext);
+	   //$response = $bot->replyMessage($event->replyToken ,$textMessageBuilder );
+       //if ($response->isSucceeded()) {
+		//	error_log("servertext".  $servertext);
+		//	echo 'Succeeded!';
+		//}else{		error_log("第52行".$response->getHTTPStatus . ' ' . $response->getRawBody());}
+		//return;
+	   }
 	}elseif("sticker" == $event->message->type){
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder("1","1");
 	}else {
